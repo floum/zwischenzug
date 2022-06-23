@@ -1,0 +1,13 @@
+<h2>Position</h2>
+
+<div id="chessboard">
+</div>
+
+<script type="module">
+  import { Chessground } from 'chessground';
+
+  const config = {
+    fen: "<% @position.fen %>"
+  };
+  const ground = Chessground(document.getElementById('chessboard'), config);
+</script>
