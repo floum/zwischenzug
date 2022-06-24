@@ -5,4 +5,8 @@ class Position
 
   validates_presence_of :fen
   validates_uniqueness_of :fen
+
+  def on_move
+    fen.split(' ')[1] == 'w' ? 'white' : 'black'
+  end
 end

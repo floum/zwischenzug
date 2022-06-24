@@ -1,6 +1,38 @@
-<h2>Position</h2>
-
+<div class="row">
+  <div class="col-6">
 <div id="chessboard">
+</div>
+  </div>
+<div class="col-6">
+  <h2>Comments</h2>
+  <%= form_for :position_comment do |f| %>
+    <div class="form-group">
+      <label for="Observations">Observations:</label>
+      <textarea class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="candidateMoves">Candidate Moves:</label>
+      <input type="text" class="form-control"></input>
+    <div class="form-group">
+      <label for="yourMove">Your move:</label>
+      <input type="text" class="form-control"></input>
+    </div>
+    <div class="form-group">
+      <label for="evaluation">Evaluation:</label>
+      <select class="form-control">
+      <option value="+-">+-</option>
+      <option value="+/-">+/-</option>
+      <option value="+/=">+/=</option>
+      <option value="=">=</option>
+      <option value="=/+">=/+</option>
+      <option value="-/+">-/+</option>
+      <option value="-+">-+</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  <% end %>
+</div>
+</div>
 </div>
 
 <script type="module">
@@ -8,6 +40,7 @@
 
   const config = {
     fen: "<%= @position.fen %>",
+    orientation: "<%= @position.on_move %>",
     movable: {
       free: false
     },
