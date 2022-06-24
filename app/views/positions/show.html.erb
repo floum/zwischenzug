@@ -7,7 +7,13 @@
   import { Chessground } from 'chessground';
 
   const config = {
-    fen: "<% @position.fen %>"
+    fen: "<%= @position.fen %>",
+    movable: {
+      free: false
+    },
+    draggable: {
+      enabled: false
+    }
   };
   const ground = Chessground(document.getElementById('chessboard'), config);
 </script>
