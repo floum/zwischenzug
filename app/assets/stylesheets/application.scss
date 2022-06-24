@@ -28,6 +28,11 @@
  */
 @import 'bootstrap';
 
+body {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+}
+
 .cg-wrap {
   width: 320px;
   height: 320px;
