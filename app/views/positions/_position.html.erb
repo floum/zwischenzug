@@ -1,0 +1,18 @@
+<div id="chessboard">
+</div>
+
+<script type="module">
+  import { Chessground } from 'chessground';
+
+  const config = {
+    fen: "<%= position.fen %>",
+    orientation: "<%= position.on_move %>",
+    movable: {
+      free: false
+    },
+    draggable: {
+      enabled: false
+    }
+  };
+  const ground = Chessground(document.getElementById('chessboard'), config);
+</script>

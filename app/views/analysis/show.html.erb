@@ -1,1 +1,8 @@
-
+<div class="row">
+  <div class="col-6">
+    <%= render @analysis.position %>
+  </div>
+  <div class="col-6">
+    <%= button_to 'delete', analysis_path(@analysis), method: :delete %>
+  </div>
+</div>
