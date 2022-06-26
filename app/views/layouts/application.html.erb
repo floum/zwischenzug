@@ -11,28 +11,33 @@
   </head>
 
   <body class="container">
-    <div class="row">
+    <nav class="navbar navbar-dark bg-dark">
       <h1>Zwischenzug</h1>
       <% if @current_user %>
-      <div>
-        <%= @current_user.name %>
-      </div>
-      <div>
-        <%= button_to 'Sign Out', session_path, method: :delete %>
-      </div>
-    <% else %>
-      <div>
-        <%= link_to 'Sign In', new_session_path %>
-      </div>
-      <div>
-        <%= link_to 'Sign Up', new_user_path %>
-      </div>
-    <% end %>
-    </div>
-    <div class="row">
-      <% flash.each do |type, msg| %>
         <div>
-          <%= msg %>
+          <%= @current_user.name %>
+        </div>
+        <div>
+          <%= button_to 'Sign Out', session_path, method: :delete %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to 'Sign In', new_session_path %>
+        </div>
+        <div>
+          <%= link_to 'Sign Up', new_user_path %>
+        </div>
+      <% end %>
+    </nav>
+    <div class="row">
+      <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
         </div>
       <% end %>
     </div>
