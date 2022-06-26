@@ -6,8 +6,13 @@ class Analysis
   field :candidate_moves, type: String
   field :move, type: String
   belongs_to :position
+  belongs_to :user
 
   validates_presence_of :evaluation
   validates_presence_of :move
   validates_presence_of :candidate_moves
+
+  def author
+    user
+  end
 end

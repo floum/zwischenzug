@@ -3,6 +3,24 @@
     <%= render @analysis.position %>
   </div>
   <div class="col-6">
+    <div>
     <%= button_to 'delete', analysis_path(@analysis), method: :delete %>
+    </div>
+    <div>
+      <h2>Observations</h2>
+      <%= @analysis.observations %>
+    </div>
+    <div>
+      <h2>Candidate Moves</h2>
+      <%= @analysis.candidate_moves %>
+    </div>
+    <div>
+      <h2>Move</h2>
+      <%= @analysis.move %>
+    </div>
+    <div>
+      <h2>Evaluation</h2>
+      <%= @analysis.evaluation %>
+    </div>
   </div>
 </div>

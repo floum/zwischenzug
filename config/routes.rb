@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'users/new'
+  get 'users/create'
+  resources :session, only: [:new, :create]
+  delete 'session', to: 'session#destroy'
+  resources :users, only: [:new, :create, :update]
   get 'analysis/create'
   root 'positions#index'
 
