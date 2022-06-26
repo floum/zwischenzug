@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: one
+  evaluation: MyString
+  observations: MyString
+  candidate_moves: MyString
+  move: MyString
+
+two:
+  position: two
+  evaluation: MyString
+  observations: MyString
+  candidate_moves: MyString
+  move: MyString

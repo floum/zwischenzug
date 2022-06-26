@@ -5,5 +5,6 @@ class PositionsController < ApplicationController
 
   def show
     @position = Position.find(params[:id])
+    @analysis = Analysis.new
   end
 end

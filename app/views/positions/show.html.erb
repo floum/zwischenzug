@@ -1,38 +1,47 @@
 <div class="row">
   <div class="col-6">
-<div id="chessboard">
-</div>
+    <div id="chessboard">
+    </div>
   </div>
-<div class="col-6">
-  <h2>Comments</h2>
-  <%= form_for :position_comment do |f| %>
-    <div class="form-group">
-      <label for="Observations">Observations:</label>
-      <textarea class="form-control"></textarea>
+  <div class="col-6">
+    <ul class="nav nav-tabs" id="analysisTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="new-tab" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="new" aria-selected="true">New</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="index-tab" data-bs-toggle="tab" data-bs-target="#index" type="button" role="tab" aria-controls="index" aria-selected="false">Index</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="analysisTabContent">
+      <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+        <h2>New Analysis</h2>
+        <%= form_for([@position, @analysis]) do |f| %>
+          <div class="form-group">
+            <label for="Observations">Observations:</label>
+            <%= f.text_area :observations, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label for="candidateMoves">Candidate Moves:</label>
+            <%= f.text_field :candidate_moves, class: 'form-control' %>
+            <div class="form-group">
+              <label for="yourMove">Your move:</label>
+              <%= f.text_field :move, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <label for="evaluation">Evaluation:</label>
+              <%= f.select :evaluation, Position::EVALUATIONS, class: 'form-control' %>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          <% end %>
+          </div>
+      </div>
+      <div class="tab-pane fade" id="index" role="tabpanel" aria-labelledby="index-tab">
+        <% @position.analysis.each do |analysis| %>
+          <div><%= link_to 'analysis', analysis_path(analysis.id) %></div>
+        <% end %>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="candidateMoves">Candidate Moves:</label>
-      <input type="text" class="form-control"></input>
-    <div class="form-group">
-      <label for="yourMove">Your move:</label>
-      <input type="text" class="form-control"></input>
-    </div>
-    <div class="form-group">
-      <label for="evaluation">Evaluation:</label>
-      <select class="form-control">
-      <option value="+-">+-</option>
-      <option value="+/-">+/-</option>
-      <option value="+/=">+/=</option>
-      <option value="=">=</option>
-      <option value="=/+">=/+</option>
-      <option value="-/+">-/+</option>
-      <option value="-+">-+</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  <% end %>
-</div>
-</div>
+  </div>
 </div>
 
 <script type="module">

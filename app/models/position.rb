@@ -1,6 +1,11 @@
 class Position
   include Mongoid::Document
   include Mongoid::Timestamps
+
+  EVALUATIONS = %w(+- +/- +/= = -/= -/+ -+)
+
+  has_many :analysis
+
   field :fen, type: String
 
   validates_presence_of :fen
