@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :analysis, only: [:show, :destroy]
+
+  resources :games, only: [:index, :new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
