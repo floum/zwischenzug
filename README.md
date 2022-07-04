@@ -13,6 +13,10 @@ Things you may want to cover:
 
 * Database creation
 
+Run a development database :
+
+docker run -d -p 27017:27017 mongo
+
 * Database initialization
 
 * How to run the test suite
@@ -22,3 +26,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
