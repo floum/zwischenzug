@@ -6,6 +6,7 @@ gem "rails", "~> 7.0.3"
 gem 'mongoid'
 gem 'sassc-rails'
 gem 'bootstrap'
+gem 'pgn'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
