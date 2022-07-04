@@ -1,6 +1,8 @@
 class Analysis
   include Mongoid::Document
   include Mongoid::Timestamps
+
+  field :fen, type: String
   field :evaluation, type: String
   field :observations, type: String
   field :candidate_moves, type: String
@@ -14,5 +16,9 @@ class Analysis
 
   def author
     user
+  end
+
+  def color
+    fen.split(' ')[1] == 'w' ? 'white' : 'black'
   end
 end

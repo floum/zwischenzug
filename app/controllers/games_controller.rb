@@ -3,6 +3,13 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+
+    redirect_to games_path
+  end
+
   def new
     @game = Game.new
   end

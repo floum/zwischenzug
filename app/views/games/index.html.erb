@@ -16,5 +16,6 @@
   <td><%= "#{game.white} - #{game.black}" %></td>
   <td><%= game.result %></td>
   <td>Create Review</td>
+  <td><%= button_to 'delete', game_path(game), method: 'delete' %></td>
 <% end %>
   </tbody>
