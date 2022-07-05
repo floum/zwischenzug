@@ -5,13 +5,35 @@ class Game
   field :white, type: String
   field :black, type: String
   field :result, type: String
-  
-  before_create :parse_headers
+  field :moves, type: Array
+  field :fens, type: Array
 
-  def parse_headers
-    game = PGN.parse(pgn).first
-    self.white = game.tags['White']
-    self.black = game.tags['Black']
-    self.result = game.tags['Result']
+  validate :valid_pgn
+  
+  before_create :parse_pgn
+
+  def valid_pgn
+    begin
+     _pgn = Chess::Pgn.new
+     _pgn.load_from_string(pgn, check_moves: true)
+    rescue Chess::InvalidPgnFormatError
+      errors.add(:pgn, 'could not be parsed')
+    end
+  end
+
+  def parse_pgn
+     _pgn = Chess::Pgn.new
+     _pgn.load_from_string(pgn, check_moves: true)
+     self.white = _pgn.white
+     self.black = _pgn.black
+     self.result = _pgn.result
+     self.moves = _pgn.moves
+
+     _game = Chess::Game.new
+     self.fens = [_game.board.to_fen]
+     _pgn.moves.each do |move|
+        _game.move(move)
+        self.fens << _game.board.to_fen
+     end
   end
 end
