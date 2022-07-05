@@ -1,5 +1,7 @@
 <%= form_for @game do |f| %>
+  <div class="form-group">
   <%= f.label :pgn %>
-  <%= f.text_area :pgn %>
-  <%= f.submit %>
+  <%= f.text_area :pgn, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
