@@ -14,6 +14,10 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def create
     @game = Game.new(game_params)
     if @game.save
