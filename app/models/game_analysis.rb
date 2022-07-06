@@ -1,10 +1,18 @@
 class GameAnalysis
   include Mongoid::Document
-  field :analysis, type: Array
+  embeds_many :position_analysis
   belongs_to :game
   belongs_to :user
 
   def color
     game.review_color
+  end
+
+  def ply_number
+    position_analysis.size * 2  + (color == 'black' ? 1 : 0) + 1
+  end
+
+  def moves
+    game.moves.first(ply_number)
   end
 end

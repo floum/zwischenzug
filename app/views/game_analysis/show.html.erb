@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-1">
+    <%= render partial: 'scoresheet', locals: { moves: @game_analysis.moves } %>
+  </div>
+  <div class="col-7">
+    <div id="chessboard"></div>
+  </div>
+  <div class="col-4">
+    <%= form_for([@game_analysis, @position_analysis]) do |f| %>
+      <div class="form-group">
+      <%= f.label 'Comments' %><%= f.text_area :comments, class: 'form-control' %>
+      </div>
+      <%= f.label 'Move' %><%= f.text_field :move, class: 'form-control' %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
+<script type="module">
+  import { Chessgame } from 'chessgame';
+  const fens = <%= raw @game_analysis.game.fens %>;
+  const game = new Chessgame(document.getElementById('chessboard'), '');
+  game.render();
+  game.setOrientation('<%= @game_analysis.color %>');
+  game.setFen(fens[<%= @game_analysis.ply_number %>]);
+</script>
