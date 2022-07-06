@@ -32,6 +32,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:pgn)
+    params.require(:game).permit(:pgn, :review_color)
   end
 end

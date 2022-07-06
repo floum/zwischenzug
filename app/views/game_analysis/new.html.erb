@@ -8,5 +8,10 @@
 </div>
 
 <script type="module">
-  import { Chessground } from 'chessground';
+  import { Chessgame } from 'chessgame';
+  const fens = <%= raw @game.fens %>;
+  const game = new Chessgame(document.getElementById('chessboard'), '');
+  game.render();
+  game.setOrientation('<%= @game_analysis.color %>');
+  game.setFen(fens[3]);
 </script>

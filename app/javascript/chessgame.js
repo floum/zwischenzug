@@ -6,12 +6,21 @@ export class Chessgame {
     this.element = element;
     this.game = new Chess();
     this.game.load_pgn(pgn);
+    this.board = undefined;
     this.boardConfig = {
       fen: this.game.fen()
     };
   }
 
   render() {
-    Chessground(this.element, this.boardConfig);
+    this.board = Chessground(this.element, this.boardConfig);
+  }
+
+  setFen(fen) {
+    this.board.set({ fen: fen });
+  }
+
+  setOrientation(color) {
+    this.board.set({ orientation: color });
   }
 }

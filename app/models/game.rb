@@ -6,6 +6,7 @@ class Game
   field :black, type: String
   field :result, type: String
   field :moves, type: Array
+  field :review_color, type: String
   field :fens, type: Array
 
   validate :valid_pgn

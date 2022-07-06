@@ -2,6 +2,8 @@
   <div class="form-group">
   <%= f.label :pgn %>
   <%= f.text_area :pgn, class: 'form-control' %>
+  <%= f.label :review_color %>
+  <%= f.select :review_color, ['white', 'black'], selected: 'white' %>
   </div>
   <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
