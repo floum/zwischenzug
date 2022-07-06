@@ -9,37 +9,11 @@
 <div class="row">
   <div class="offset-1 col-2"><button id="move-back">Back</button></div>
   <div class="col-2"><button id="move-forward">Fwd</button></div>
+</div>
 
   <script type="module">
-    import { Chessground } from 'chessground';
-  const fens = <%= raw @game.fens %>;
-  var moveIndex = 0;
-
-  const config = {
-    fen: fens[moveIndex],
-    orientation: 'white',
-    movable: {
-      free: false
-    },
-    draggable: {
-      enabled: false
-    }
-  };
-  const ground = Chessground(document.getElementById('chessboard'), config);
-
-  function moveBack() {
-    moveIndex -= 1;
-    moveIndex = Math.max(0, moveIndex);
-    ground.set({ fen: fens[moveIndex] });
-  };
-  const moveForward = function() {
-    console.log('Moving forward');
-    moveIndex += 1;
-    moveIndex = Math.min(moveIndex, fens.length - 1);
-    ground.set({ fen: fens[moveIndex] });
-    console.log(fens[moveIndex]);
-  };
-
-  document.getElementById('move-back').addEventListener('click', moveBack);
-  document.getElementById('move-forward').addEventListener('click', moveForward);
+  import { Chessgame } from 'chessgame';
+  const pgn = '<%= j @game.pgn %>';
+  const game = new Chessgame(document.getElementById('chessboard'), pgn); 
+  game.render();
   </script>

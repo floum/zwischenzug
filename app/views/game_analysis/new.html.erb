@@ -1,1 +1,12 @@
-<%= render partial: 'position', locals: { position: @position} %>
+<div class="row">
+  <div class="col-6">
+    <div id="chessboard"></div>
+  </div>
+  <div class="col-6">
+    Analysis
+  </div>
+</div>
+
+<script type="module">
+  import { Chessground } from 'chessground';
+</script>
