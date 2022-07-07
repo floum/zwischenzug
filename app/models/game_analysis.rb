@@ -15,4 +15,8 @@ class GameAnalysis
   def moves
     game.moves.first(ply_number)
   end
+
+  def complete?
+    position_analysis.size == game.length
+  end
 end

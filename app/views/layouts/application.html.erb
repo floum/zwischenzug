@@ -18,22 +18,19 @@
           <li class="nav-item">
             <%= link_to 'Games', games_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Positions', positions_path, class: 'nav-link' %>
-          </li>
         <% if @current_user %>
           <li class="nav-item">
             <%= @current_user.name %>
           </li>
           <li class="nav-item">
-            <%= button_to 'Sign Out', session_path, method: :delete, class: 'nav-link' %>
+            <%= button_to 'Sign Out', session_path, method: :delete, class: 'nav-link btn-primary' %>
           </div>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign In', new_session_path %>
+            <%= link_to 'Sign In', new_session_path, class: 'btn btn-primary' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign Up', new_user_path %>
+            <%= link_to 'Sign Up', new_user_path, class: 'btn btn-primary' %>
           </li>
         <% end %>
         </ul>

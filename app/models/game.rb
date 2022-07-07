@@ -9,9 +9,15 @@ class Game
   field :review_color, type: String
   field :fens, type: Array
 
+  has_many :game_analysis
+
   validate :valid_pgn
   
   before_create :parse_pgn
+
+  def length
+    moves.size / 2
+  end
 
   def valid_pgn
     begin
@@ -36,5 +42,9 @@ class Game
         _game.move(move)
         self.fens << _game.board.to_fen
      end
+  end
+
+  def current_analysis(user)
+    game_analysis.select { |analysis| analysis.user == user && !analysis.complete? }
   end
 end

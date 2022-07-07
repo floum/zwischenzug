@@ -1,6 +1,11 @@
 <h2>Games</h2>
 
 <%= link_to 'New Game', new_game_path %>
+<%= form_tag games_import_path do %>
+  <%= label_tag :lichess_id, 'Lichess ID (8 characters)' %>
+  <%= text_field_tag :lichess_id %>
+  <%= submit_tag 'Import' %>
+<% end %>
 
 <table>
   <thead>
@@ -10,15 +15,18 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
-<% @games.each do |game| %>
-  <tr>
-  <td><%= "#{game.white} - #{game.black}" %></td>
-  <td><%= game.result %></td>
-  <td><%= link_to 'View', game_path(game) %></td>
-  <td><%= button_to 'New Game Analysis', game_analysis_index_path(game_id: game.id), class: 'btn btn-primary' %></td>
-  <td><%= button_to 'delete', game_path(game), method: 'delete' %></td>
-<% end %>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= "#{game.white} - #{game.black}" %></td>
+        <td><%= game.length %> Moves</td>
+        <td><%= game.result %></td>
+        <td><%= link_to 'View', game_path(game), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Analysis', game_analysis_path(game), class: 'btn btn-primary' %></td>
+        <td><%= button_to 'delete', game_path(game), method: 'delete', class: 'btn btn-danger' %></td>
+      <% end %>
   </tbody>
+</table>

@@ -3,6 +3,18 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
+  def import
+    response = Net::HTTP.get(URI.parse("https://lichess.org/game/export/#{params[:lichess_id]}?evals=false"))
+    @game = Game.new(pgn: response)
+    if @game.save
+      flash[:notice] = 'Game saved'
+    else
+      flash[:alert] = "Game was not saved : #{@game.errors.full_messages}"
+    end
+
+    redirect_to games_path
+  end
+
   def destroy
     @game = Game.find(params[:id])
     @game.destroy

@@ -6,7 +6,7 @@
       <td>Black</td>
     </tr>
     <tbody>
-      <% moves.each_slice(2).each_with_index do |(white_ply, black_ply), index| %>
+      <% moves.last(21).each_slice(2).each_with_index do |(white_ply, black_ply), index| %>
         <tr>
           <td><%= index + 1 %>.</td>
           <td><%= white_ply %></td>
