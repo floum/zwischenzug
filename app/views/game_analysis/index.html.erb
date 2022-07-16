@@ -1,3 +1,4 @@
+<%= link_to 'New', new_game_analysis_path, class: 'btn btn-primary' %>
 <% @game_analysis.each do |analysis| %>
 <div>
   <%= link_to analysis.game.header, game_analysis_path(analysis) %>

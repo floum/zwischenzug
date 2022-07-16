@@ -25,7 +25,6 @@
         <td><%= game.length %> Moves</td>
         <td><%= game.result %></td>
         <td><%= link_to 'View', game_path(game), class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Analysis', game_analysis_path(game), class: 'btn btn-primary' %></td>
         <td><%= button_to 'delete', game_path(game), method: 'delete', class: 'btn btn-danger' %></td>
       <% end %>
   </tbody>

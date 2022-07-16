@@ -1,6 +1,10 @@
 class GameAnalysisController < ApplicationController
   before_action :require_login
 
+  def new
+    @game_analysis = GameAnalysis.new
+  end
+
   def index
     @game_analysis = GameAnalysis.where(user: current_user)
   end
@@ -30,10 +34,19 @@ class GameAnalysisController < ApplicationController
   end
 
   def create
-    raise StandardError
+    @game_analysis = GameAnalysis.new(game_analysis_params)
+    @game_analysis.user = current_user
+    if @game_analysis.save
+      flash[:notice] = 'Good luck!'
+      redirect_to game_analysis_path(@game_analysis.id)
+    end
   end
 
   private
+
+  def game_analysis_params
+    params.require(:game_analysis).permit(:game_id)
+  end
 
   def position_analysis_params
     params.require(:position_analysis).permit(:comments, :move)

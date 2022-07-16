@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :update]
 
   resources :games, only: [:index, :new, :create, :destroy, :show]
-  resources :game_analysis, only: [:index, :show, :edit, :update]
+  resources :game_analysis
   post 'games/import', to: 'games#import'
 
   root 'games#index'
