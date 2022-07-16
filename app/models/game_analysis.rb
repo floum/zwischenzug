@@ -9,7 +9,7 @@ class GameAnalysis
   end
 
   def ply_number
-    position_analysis.size * 2  + (color == 'black' ? 1 : 0) + 1
+    position_analysis.size * 2  + (color == 'black' ? 1 : 0)
   end
 
   def moves
@@ -18,5 +18,9 @@ class GameAnalysis
 
   def complete?
     position_analysis.size == game.length
+  end
+  
+  def current_fen
+    game.fens[ply_number]
   end
 end
