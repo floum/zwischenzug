@@ -47,4 +47,8 @@ class Game
   def current_analysis(user)
     game_analysis.select { |analysis| analysis.user == user && !analysis.complete? }
   end
+
+  def header
+    "#{white} - #{black} | #{result}"
+  end
 end

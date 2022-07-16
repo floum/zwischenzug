@@ -1,40 +1,36 @@
 class GameAnalysisController < ApplicationController
   before_action :require_login
 
+  def index
+    @game_analysis = GameAnalysis.where(user: current_user)
+  end
+
+  def edit
+    @game_analysis = GameAnalysis.find(params[:id])
+    @position_analysis = PositionAnalysis.new
+  end
+
   def show
-    begin
-      @game_analysis = GameAnalysis.find_by(
-        game_id: params[:game_id],
-        user_id: current_user.id
-      )
-    rescue Mongoid::Errors::DocumentNotFound
-      @game_analysis = GameAnalysis.create(
-        game_id: params[:game_id],
-        user: current_user
-      )
-    end
+    @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new
 
-    if @game_analysis.complete?
-      flash[:notice] = 'Analysis Complete'
-      redirect_to games_path
+    unless @game_analysis.complete?
+      render 'edit'
     end
   end
 
   def update
-    @game_analysis = GameAnalysis.find_by(
-      game_id: params[:game_id],
-      user_id: current_user.id
-    )
+    @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new(position_analysis_params)
 
     @game_analysis.position_analysis << @position_analysis
-
     @game_analysis.save
 
-    @position_analysis = PositionAnalysis.new
+    redirect_to game_analysis_path(params[:id])
+  end
 
-    redirect_to game_analysis_path(game_id: params[:game_id])
+  def create
+    raise StandardError
   end
 
   private

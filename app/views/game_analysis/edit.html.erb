@@ -6,7 +6,7 @@
     <div id="chessboard"></div>
   </div>
   <div class="col-4">
-    <%= form_for @position_analysis, url: update_game_analysis_path(@game_analysis.game) do |f| %>
+    <%= form_for @position_analysis, url: game_analysis_path(@game_analysis), method: :patch do |f| %>
       <div class="form-group">
       <%= f.label 'Comments' %><%= f.text_area :comments, class: 'form-control' %>
       </div>

@@ -6,11 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :update]
 
   resources :games, only: [:index, :new, :create, :destroy, :show]
+  resources :game_analysis, only: [:index, :show, :edit, :update]
   post 'games/import', to: 'games#import'
-
-  get 'games/:game_id/analysis', to: 'game_analysis#show', as: 'game_analysis'
-  post 'games/:game_id/analysis', to: 'game_analysis#update', as: 'update_game_analysis'
-  patch 'games/:game_id/analysis', to: 'game_analysis#update'
 
   root 'games#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
