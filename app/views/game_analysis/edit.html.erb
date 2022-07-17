@@ -22,7 +22,6 @@
   import { Chessgame } from 'chessgame';
   const fens = <%= raw @game_analysis.game.fens %>;
   const game = new Chessgame(document.getElementById('chessboard'), '');
-  game.render();
   game.setOrientation('<%= @game_analysis.color %>');
   game.setFen('<%= @game_analysis.current_fen %>');
 </script>

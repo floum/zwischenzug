@@ -18,7 +18,6 @@ export class Chessgame {
     this._plyNumber = 0;
   }
 
-
   setFen(fen) {
     this.board.set({ fen: fen });
   }
