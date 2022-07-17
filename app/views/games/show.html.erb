@@ -7,13 +7,30 @@
   <div class="col-6"></div>
 </div>
 <div class="row">
-  <div class="offset-1 col-2"><button id="move-back">Back</button></div>
-  <div class="col-2"><button id="move-forward">Fwd</button></div>
+  <div class="col-1"><button class="btn btn-primary" id="startMove">Start</button></div>
+  <div class="col-1"><button class="btn btn-primary" id="backMove">Back</button></div>
+  <div class="col-1"><button class="btn btn-primary" id="forwardMove">Forward</button></div>
+  <div class="col-1"><button class="btn btn-primary" id="endMove">End</button></div>
 </div>
 
-  <script type="module">
+<script type="module">
   import { Chessgame } from 'chessgame';
   const pgn = '<%= j @game.pgn %>';
   const game = new Chessgame(document.getElementById('chessboard'), pgn); 
-  game.render();
-  </script>
+
+  document.querySelector('#startMove').addEventListener('click', function() {
+    game.startMove();
+  });
+
+  document.querySelector('#backMove').addEventListener('click', function() {
+  game.backMove();
+  });
+
+  document.querySelector('#forwardMove').addEventListener('click', function() {
+    game.forwardMove();
+  });
+
+  document.querySelector('#endMove').addEventListener('click', function() {
+    game.endMove();
+  });
+</script>
