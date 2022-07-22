@@ -12,7 +12,7 @@ class Game
   has_many :game_analysis
 
   validate :valid_pgn
-  
+
   before_create :parse_pgn
 
   STARTING_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
@@ -24,9 +24,10 @@ class Game
   def valid_pgn
     begin
      _pgn = Chess::Pgn.new
+     logger.debug(pgn)
      _pgn.load_from_string(pgn, check_moves: true)
-    rescue Chess::InvalidPgnFormatError
-      errors.add(:pgn, 'could not be parsed')
+   rescue Chess::InvalidPgnFormatError => e
+      errors.add(:pgn, e.message)
     end
   end
 

@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def import
-    response = Net::HTTP.get(URI.parse("https://lichess.org/game/export/#{params[:lichess_id]}?evals=false"))
+    response = Net::HTTP.get(URI.parse("https://lichess.org/game/export/#{params[:lichess_id]}?evals=false&clocks=false"))
     @game = Game.new(pgn: response, review_color: params[:review_color])
     if @game.save
       flash[:notice] = 'Game saved'
