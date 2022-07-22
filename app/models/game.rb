@@ -9,7 +9,7 @@ class Game
   field :review_color, type: String
   field :fens, type: Array
 
-  has_many :game_analysis
+  has_many :game_analysis, dependent: :destroy
 
   validate :valid_pgn
 
