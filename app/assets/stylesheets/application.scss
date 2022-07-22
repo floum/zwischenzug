@@ -277,7 +277,7 @@ cg-board square.current-premove {
 .cg-wrap.orientation-white coords.files coord:nth-child(2n),
 .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1),
 .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
-  color: rgba(72, 72, 72, 0.8);
+  color: rgba(180, 180, 180, 0.8);
 }
 
 .cg-wrap.orientation-black coords.ranks coord:nth-child(2n),
