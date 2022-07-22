@@ -1,7 +1,8 @@
+<h2>Import PGN</h2>
 <%= form_for @game do |f| %>
   <div class="form-group">
   <%= f.label :pgn %>
-  <%= f.text_area :pgn, class: 'form-control' %>
+  <%= f.text_area :pgn, rows: 20, class: 'form-control' %>
   <%= f.label :review_color %>
   <%= f.select :review_color, ['white', 'black'], selected: 'white' %>
   </div>

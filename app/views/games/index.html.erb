@@ -1,11 +1,19 @@
 <h2>Games</h2>
 
-<%= link_to 'New Game', new_game_path %>
+<div class="row">
+  <div class="col-3">
+<%= link_to 'Import PGN', new_game_path, class: 'btn btn-primary' %>
+</div>
+<div class="col-9">
 <%= form_tag games_import_path do %>
   <%= label_tag :lichess_id, 'Lichess ID (8 characters)' %>
   <%= text_field_tag :lichess_id %>
-  <%= submit_tag 'Import' %>
+  <%= label_tag :review_color, 'Review Color' %>
+  <%= select_tag :review_color, options_for_select(['white', 'black'], 'white') %>
+  <%= submit_tag 'Import', class: 'btn btn-primary' %>
 <% end %>
+</div>
+</div>
 
 <table>
   <thead>
