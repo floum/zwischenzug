@@ -6,22 +6,57 @@
   <div id="chessboard"></div>
   </div>
   <div class="col-6">
-    <div id="analysis"></div>
+    <div class="row">
+      <h3>Comments</h3>
+      <div id="comments"></div>
+    </div>
+    <div class="row">
+      <h3>Your Move</h3>
+      <div id="move"></div>
+    </div>
+    <div class="row">
+      <h3>Effective Move</h3>
+      <div id="effective-move"></div>
+    </div>
   </div>
 </div>
 
 <script type="module">
   var move = 0;
-  var fens = <%= raw @game_analysis.position_analysis.map(&:fen) %>;
-  var comments = <%= raw @game_analysis.position_analysis.map(&:comments) %>;
-  console.log(fens);
-  console.log(comments);
 
   import { Chessboard } from 'chessboard';
-  const board = new Chessboard(
-    document.getElementById('chessboard'),
-    fens[move],
-    '<%= @game_analysis.color %>'
-  );
-  document.querySelector('#analysis').innerHTML = comments[move];
+  const render = function() {
+  fetch('/game_analysis/<%= @game_analysis.id %>.json').then(
+    response => response.json()).then(
+    function(data) {
+      console.log(data);
+      new Chessboard(
+        document.getElementById('chessboard'),
+        data.position_analysis[move].fen,
+        '<%= @game_analysis.color %>'
+      );
+      document.querySelector('#comments').innerHTML = data.position_analysis[move].comments;
+      document.querySelector('#move').innerHTML = data.position_analysis[move].move;
+      document.querySelector('#effective-move').innerHTML = data.position_analysis[move].effective_move;
+    }
+  )
+
+};
+  render();
+
+  document.querySelector('#startMove').addEventListener('click', function() {
+    move = 0;
+    render();
+  });
+
+  document.querySelector('#forwardMove').addEventListener('click', function() {
+    move = move + 1;
+    render();
+  });
+  document.querySelector('#backMove').addEventListener('click', function(){
+    move = move - 1;
+    move = Math.max(0, move);
+    render();
+  });
+
 </script>

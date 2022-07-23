@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :games, only: [:index, :new, :create, :destroy, :show]
   resources :game_analysis
+
   post 'games/import', to: 'games#import'
 
   root 'games#index'

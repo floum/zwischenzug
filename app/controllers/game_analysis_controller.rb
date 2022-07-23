@@ -18,6 +18,7 @@ class GameAnalysisController < ApplicationController
     @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new
 
+    p @game_analysis.to_json
     unless @game_analysis.complete?
       render 'edit'
     end
