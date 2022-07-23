@@ -1,13 +1,10 @@
 <h3>Game : <%= @game_analysis.game.header %></h3>
 
 <div class="row">
-  <div class="col-2">
-    <%= render partial: 'games/scoresheet', locals: { moves: @game_analysis.moves } %>
-  </div>
   <div class="col-7">
     <div id="chessboard"></div>
   </div>
-  <div class="col-4">
+  <div class="col-5">
     <%= form_for @position_analysis, url: game_analysis_path(@game_analysis), method: :patch do |f| %>
       <div class="form-group">
       <%= f.label 'Comments' %><%= f.text_area :comments, rows: 20, class: 'form-control' %>
