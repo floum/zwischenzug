@@ -27,10 +27,19 @@
  * board and pieces displayed!
  */
 @import 'bootstrap';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css");
 
 body {
   background-color: var(--bs-dark);
   color: var(--bs-light);
+}
+
+.game-nav-row {
+  text-align: center;
+}
+
+.nav-btn {
+  display: inline-block;
 }
 
 .cg-wrap {

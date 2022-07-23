@@ -1,13 +1,13 @@
 <h2><%= @game.white %> - <%= @game.black %> | <%= @game.result %></h2>
 
-<div class="row">
-  <div class="col-1"><button class="btn btn-primary" id="startMove">Start</button></div>
-  <div class="col-1"><button class="btn btn-primary" id="backMove">Back</button></div>
-  <div class="col-1"><button class="btn btn-primary" id="forwardMove">Forward</button></div>
-  <div class="col-1"><button class="btn btn-primary" id="endMove">End</button></div>
+<div class="row-fluid game-nav-row">
+  <div class="nav-btn"><button class="btn btn-primary" id="startMove"><i class="bi bi-skip-backward"></i></button></div>
+  <div class="nav-btn"><button class="btn btn-primary" id="backMove"><i class="bi bi-rewind"></i></button></div>
+  <div class="nav-btn"><button class="btn btn-primary" id="forwardMove"><i class="bi bi-fast-forward"></i></button></div>
+  <div class="nav-btn"><button class="btn btn-primary" id="endMove"><i class="bi bi-skip-forward"></i></button></div>
 </div>
 
-<div class="row">
+<div class="row text-center">
   <div class="col-6">
     <div id="chessboard"></div>
   </div>
