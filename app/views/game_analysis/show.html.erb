@@ -1,8 +1,27 @@
 
 <%= @game_analysis.game.header %>
+<%= render partial: 'games/navigation' %>
 <div class="row">
-  <div class="col-2">
-    <%= render partial: 'games/scoresheet', locals: { moves: @game_analysis.moves } %>
+  <div class="col-6">
+  <div id="chessboard"></div>
+  </div>
+  <div class="col-6">
+    <div id="analysis"></div>
+  </div>
 </div>
-<div id="chessboard">
-</div>
+
+<script type="module">
+  var move = 0;
+  var fens = <%= raw @game_analysis.position_analysis.map(&:fen) %>;
+  var comments = <%= raw @game_analysis.position_analysis.map(&:comments) %>;
+  console.log(fens);
+  console.log(comments);
+
+  import { Chessboard } from 'chessboard';
+  const board = new Chessboard(
+    document.getElementById('chessboard'),
+    fens[move],
+    '<%= @game_analysis.color %>'
+  );
+  document.querySelector('#analysis').innerHTML = comments[move];
+</script>
