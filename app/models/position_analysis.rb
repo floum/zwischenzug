@@ -4,6 +4,8 @@ class PositionAnalysis
 
   embedded_in :game_analysis
 
+  field :fen, type: String
+  field :effective_move, type: String
   field :comments, type: String
   field :move, type: String
 end

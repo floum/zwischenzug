@@ -49,7 +49,7 @@ class GameAnalysisController < ApplicationController
   end
 
   def position_analysis_params
-    params.require(:position_analysis).permit(:comments, :move)
+    params.require(:position_analysis).permit(:comments, :move, :fen, :effective_move)
   end
 
 end

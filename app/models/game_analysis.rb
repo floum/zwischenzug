@@ -19,8 +19,12 @@ class GameAnalysis
   def complete?
     position_analysis.size == game.length
   end
-  
+
   def current_fen
     game.fens[ply_number]
+  end
+
+  def effective_move
+    game.moves[ply_number]
   end
 end

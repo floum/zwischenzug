@@ -6,10 +6,14 @@
   </div>
   <div class="col-5">
     <%= form_for @position_analysis, url: game_analysis_path(@game_analysis), method: :patch do |f| %>
+      <%= f.hidden_field :fen, value: @game_analysis.current_fen %>
+      <%= f.hidden_field :effective_move, value: @game_analysis.effective_move %>
       <div class="form-group">
-      <%= f.label 'Comments' %><%= f.text_area :comments, rows: 20, class: 'form-control' %>
+        <%= f.label 'Comments' %><%= f.text_area :comments, rows: 20, class: 'form-control' %>
       </div>
-      <%= f.label 'Move' %><%= f.text_field :move, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.label 'Move' %><%= f.text_field :move, class: 'form-control' %>
+      </div>
       <%= f.submit %>
     <% end %>
   </div>
