@@ -32,6 +32,7 @@ class Game
   end
 
   def parse_pgn
+     logger.debug('PARSING PGN')
      _pgn = Chess::Pgn.new
      _pgn.load_from_string(pgn, check_moves: true)
      self.white = _pgn.white

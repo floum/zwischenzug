@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
+    begin
+      @current_user ||= User.find(session[:user_id])
+    rescue Mongoid::Errors::DocumentNotFound
+      session[:user_id] = nil
+      flash[:alert] = 'Invalid Session, You have been signed out.'
+      redirect_to root_path
+    end
   end
 
   def logged_in?

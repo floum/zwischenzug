@@ -1,4 +1,7 @@
-<h2>Games</h2>
+<h2>Games
+  <span class="badge bg-secondary"><%= @games.size %></span>
+  <span class="badge bg-secondary">Moves: <%= @games.map(&:length).reduce(:+) %></span>
+</h2>
 
 <div class="row">
   <div class="col-3">

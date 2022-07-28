@@ -1,7 +1,8 @@
 <%= link_to 'New', new_game_analysis_path, class: 'btn btn-primary' %>
-<% @game_analysis.each do |analysis| %>
+<% @game_analysis.sort_by(&:completion).each do |analysis| %>
 <div>
   <%= link_to analysis.game.header, game_analysis_path(analysis) %>
+  <%= analysis.length %> / <%= analysis.game.length %>
   <% if analysis.complete? %>
   complete
   <% end %>

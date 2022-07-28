@@ -8,6 +8,14 @@ class GameAnalysis
     game.review_color
   end
 
+  def completion
+    length.to_f / game.length
+  end
+
+  def length
+    position_analysis.length
+  end
+
   def ply_number
     position_analysis.size * 2  + (color == 'black' ? 1 : 0)
   end
