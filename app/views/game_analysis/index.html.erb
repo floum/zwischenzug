@@ -1,11 +1,17 @@
 <%= link_to 'New', new_game_analysis_path, class: 'btn btn-primary' %>
-<% @game_analysis.sort_by(&:completion).each do |analysis| %>
-<div>
-  <%= link_to analysis.game.header, game_analysis_path(analysis) %>
-  <%= analysis.length %> / <%= analysis.game.length %>
-  <% if analysis.complete? %>
-  complete
-  <% end %>
-  <%= button_to 'delete', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', data: {confirm: 'are you sure?'} %>
-<div>
+<table>
+  <thead>
+    <td></td>
+    <td></td>
+    <td></td>
+  </thead>
+  <tbody>
+    <% @game_analysis.sort_by{|analysis| [analysis.completion, analysis.game_length]}.each do |analysis| %>
+<tr>
+  <td><%= link_to analysis.game.header, game_analysis_path(analysis) %></td>
+  <td><%= analysis.length %> / <%= analysis.game.length %></td>
+  <td><%= button_to 'archive', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'are you sure?'}} %></td>
+</tr>
 <% end %>
+</tbody>
+</table>

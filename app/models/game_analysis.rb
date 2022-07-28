@@ -8,6 +8,10 @@ class GameAnalysis
     game.review_color
   end
 
+  def game_length
+    game.length
+  end
+
   def completion
     length.to_f / game.length
   end
