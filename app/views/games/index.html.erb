@@ -5,7 +5,7 @@
 <%= link_to 'Import PGN', new_game_path, class: 'btn btn-primary' %>
 </div>
 <div class="col-9">
-<%= form_tag games_import_path do %>
+<%= form_tag import_games_path do %>
   <%= label_tag :lichess_id, 'Lichess ID (8 characters)' %>
   <%= text_field_tag :lichess_id %>
   <%= label_tag :review_color, 'Review Color' %>
