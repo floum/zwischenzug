@@ -6,5 +6,6 @@
   <% if analysis.complete? %>
   complete
   <% end %>
+  <%= button_to 'delete', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', data: {confirm: 'are you sure?'} %>
 <div>
 <% end %>

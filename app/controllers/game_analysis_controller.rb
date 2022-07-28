@@ -43,6 +43,13 @@ class GameAnalysisController < ApplicationController
     end
   end
 
+  def destroy
+    @game_analysis = GameAnalysis.find(params[:id])
+    @game_analysis.destroy
+
+    redirect_to game_analysis_index_path
+  end
+
   private
 
   def game_analysis_params
