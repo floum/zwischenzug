@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :game_analysis
 
-  root 'games#index'
+  root 'game_analysis#index'
 
   namespace 'api', defaults: {format: :json} do
     resources :games do

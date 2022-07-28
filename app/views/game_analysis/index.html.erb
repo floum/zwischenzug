@@ -1,4 +1,7 @@
-<%= link_to 'New', new_game_analysis_path, class: 'btn btn-primary' %>
+<%= link_to new_game_analysis_path, class: 'btn btn-primary' do %>
+  <i class="bi bi-file-plus"></i>
+<% end %>
+<span class="badge bg-light text-dark"><%= @game_analysis.map(&:length).reduce(:+) %> / <%= @game_analysis.map(&:game_length).reduce(:+) %> Moves Reviewed</span>
 <table>
   <thead>
     <td></td>
