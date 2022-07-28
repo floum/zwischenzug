@@ -3,6 +3,12 @@ class GameAnalysis
   embeds_many :position_analysis
   belongs_to :game
   belongs_to :user
+  field :archived, type: :boolean, default: false
+
+  def archive
+    self.archived = true
+    save
+  end
 
   def color
     game.review_color

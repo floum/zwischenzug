@@ -7,7 +7,7 @@ class PositionAnalysisController < ApplicationController
 
     @game_analysis.save
 
-    redirect_to game_analysis_path(@game_analysis)
+    redirect_to edit_game_analysis_path(@game_analysis)
   end
 
   private

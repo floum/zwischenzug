@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    @games = Game.active
   end
 
   def import
@@ -16,7 +16,7 @@ class GamesController < ApplicationController
 
   def destroy
     @game = Game.find(params[:id])
-    @game.destroy
+    @game.archive
 
     redirect_to games_path
   end

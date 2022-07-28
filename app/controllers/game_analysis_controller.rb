@@ -6,22 +6,21 @@ class GameAnalysisController < ApplicationController
   end
 
   def index
-    @game_analysis = GameAnalysis.where(user: current_user)
+    @game_analysis = GameAnalysis.where(user: current_user, archived: false)
   end
 
   def edit
     @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new
+
+    if @game_analysis.complete?
+      render 'show'
+    end
   end
 
   def show
     @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new
-
-    p @game_analysis.to_json
-    unless @game_analysis.complete?
-      render 'edit'
-    end
   end
 
   def update
@@ -31,7 +30,7 @@ class GameAnalysisController < ApplicationController
     @game_analysis.position_analysis << @position_analysis
     @game_analysis.save
 
-    redirect_to game_analysis_path(params[:id])
+    redirect_to edit_game_analysis_path(params[:id])
   end
 
   def create
@@ -45,7 +44,7 @@ class GameAnalysisController < ApplicationController
 
   def destroy
     @game_analysis = GameAnalysis.find(params[:id])
-    @game_analysis.destroy
+    @game_analysis.archive
 
     redirect_to game_analysis_index_path
   end

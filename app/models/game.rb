@@ -8,6 +8,7 @@ class Game
   field :moves, type: Array
   field :review_color, type: String
   field :fens, type: Array
+  field :archived, type: :boolean, default: false
 
   has_many :game_analysis, dependent: :destroy
 
@@ -16,6 +17,15 @@ class Game
   before_create :parse_pgn
 
   STARTING_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+
+  def self.active
+    where archived: false
+  end
+
+  def archive
+    self.archived = true
+    save
+  end
 
   def length
     moves.size / 2

@@ -4,11 +4,13 @@
     <td></td>
     <td></td>
     <td></td>
+    <td></td>
   </thead>
   <tbody>
     <% @game_analysis.sort_by{|analysis| [analysis.completion, analysis.game_length]}.each do |analysis| %>
 <tr>
-  <td><%= link_to analysis.game.header, game_analysis_path(analysis) %></td>
+  <td><%= link_to analysis.game.header, edit_game_analysis_path(analysis) %></td>
+  <td><%= link_to 'show', game_analysis_path(analysis) %></td>
   <td><%= analysis.length %> / <%= analysis.game.length %></td>
   <td><%= button_to 'archive', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'are you sure?'}} %></td>
 </tr>
