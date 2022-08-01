@@ -20,7 +20,6 @@ class GameAnalysisController < ApplicationController
 
   def show
     @game_analysis = GameAnalysis.find(params[:id])
-    @position_analysis = PositionAnalysis.new
   end
 
   def update
@@ -38,7 +37,7 @@ class GameAnalysisController < ApplicationController
     @game_analysis.user = current_user
     if @game_analysis.save
       flash[:notice] = 'Good luck!'
-      redirect_to game_analysis_path(@game_analysis.id)
+      redirect_to edit_game_analysis_path(@game_analysis.id)
     end
   end
 
