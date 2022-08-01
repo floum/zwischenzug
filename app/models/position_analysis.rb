@@ -14,4 +14,6 @@ class PositionAnalysis
   def format_comments
     comments.gsub!("\r\n", "<br/>")
   end
+
+  validates_presence_of :move
 end
