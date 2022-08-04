@@ -1,7 +1,10 @@
 <h3>Game : <%= @game_analysis.game.header %></h3>
 
 <div class="row">
-  <div class="col-7">
+  <div class="col-1">
+    <%= render partial: 'games/scoresheet', locals: {moves: @game_analysis.moves} %>
+  </div>
+  <div class="col-6">
     <div id="chessboard"></div>
   </div>
   <div class="col-5">

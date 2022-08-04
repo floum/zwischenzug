@@ -1,9 +1,11 @@
 <div class="scoresheet">
+  <table>
   <% moves.each_slice(2).each_with_index do |(white_ply, black_ply), index| %>
-  <div class="row">
-    <div class="col-2"><%= index + 1 %>.</div>
-    <div class="col-5"><%= white_ply %></div>
-    <div class="col-5"><%= black_ply %></div>
-  </div>
+    <tr>
+      <td><%= index + 1 %>.</td>
+      <td><%= white_ply %><td>
+      <td><%= black_ply %></td>
+    </tr>
   <% end %>
+  </table>
 </div>
