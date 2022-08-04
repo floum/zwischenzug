@@ -26,10 +26,15 @@ class GameAnalysisController < ApplicationController
     @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new(position_analysis_params)
 
-    @game_analysis.position_analysis << @position_analysis
-    @game_analysis.save
-
-    redirect_to edit_game_analysis_path(params[:id])
+    if @position_analysis.valid?
+      @game_analysis.position_analysis << @position_analysis
+      @game_analysis.save
+      flash[:alert] = nil
+      redirect_to edit_game_analysis_path(params[:id])
+    else
+      flash[:alert] = @position_analysis.errors.full_messages
+      render 'edit'
+    end
   end
 
   def create
