@@ -7,6 +7,12 @@ class User
 
   field :name, type: String
   field :password_digest, type: String
+  field :language, type: String
 
   validates_uniqueness_of :name
+  validates :language, inclusion: { in: ['fr', 'en'] }
+
+  def translator
+    @translator ||= MoveTranslator.new(language)
+  end
 end

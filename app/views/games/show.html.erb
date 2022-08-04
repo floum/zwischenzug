@@ -3,6 +3,9 @@
 <%= render partial: 'navigation' %>
 
 <div class="row text-center">
+  <div class="col-1">
+    <%= render partial: 'games/scoresheet', locals: {moves: @game.moves} %>
+  </div>
   <div class="col-6">
     <div id="chessboard"></div>
   </div>

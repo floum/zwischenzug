@@ -23,6 +23,7 @@ class GameAnalysisController < ApplicationController
   end
 
   def update
+    params[:position_analysis][:move] = @current_user.translator.from(params[:position_analysis][:move])
     @game_analysis = GameAnalysis.find(params[:id])
     @position_analysis = PositionAnalysis.new(position_analysis_params)
 
