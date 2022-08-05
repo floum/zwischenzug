@@ -1,5 +1,5 @@
 <%= form_for @game_analysis do |f| %>
   <%= f.label :game %>
   <%= f.select :game_id, Game.all.map {|g| [g.header, g.id] } %>
-  <%= f.submit %>
+  <%= f.submit 'Create', class: 'btn btn-primary' %>
 <% end %>

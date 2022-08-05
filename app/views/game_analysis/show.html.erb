@@ -1,4 +1,3 @@
-
 <%= @game_analysis.game.header %>
 <%= render partial: 'games/navigation' %>
 <div class="row">
@@ -25,41 +24,42 @@
 </div>
 
 <script type="module">
-  var move = 0;
-
   import { Chessboard } from 'chessboard';
-  const render = function() {
-  fetch('/game_analysis/<%= @game_analysis.id %>.json').then(
-    response => response.json()).then(
-    function(data) {
-      console.log(data);
+
+  var move = 0;
+  const gameAnalysis = <%= raw @game_analysis.to_json %>;
+
+  const render = function(moveNumber) {
+      var positionAnalysis = gameAnalysis.position_analysis[moveNumber];
       new Chessboard(
         document.getElementById('chessboard'),
-        data.position_analysis[move].fen,
+        positionAnalysis.fen,
         '<%= @game_analysis.color %>'
       );
-      document.querySelector('#comments').innerHTML = data.position_analysis[move].comments;
-      document.querySelector('#move').innerHTML = data.position_analysis[move].move;
-      document.querySelector('#effective-move').innerHTML = data.position_analysis[move].effective_move;
+      document.querySelector('#comments').innerHTML = positionAnalysis.comments;
+      document.querySelector('#move').innerHTML = positionAnalysis.move;
+      document.querySelector('#effective-move').innerHTML = positionAnalysis.effective_move;
     }
-  )
-
-};
-  render();
+  render(move);
 
   document.querySelector('#startMove').addEventListener('click', function() {
     move = 0;
-    render();
+    render(move);
   });
 
   document.querySelector('#forwardMove').addEventListener('click', function() {
-    move = move + 1;
-    render();
-  });
-  document.querySelector('#backMove').addEventListener('click', function(){
-    move = move - 1;
-    move = Math.max(0, move);
-    render();
+    move = Math.min(gameAnalysis.position_analysis.length - 1, move + 1);
+    render(move);
   });
 
+  document.querySelector('#backMove').addEventListener('click', function(){
+    move = Math.max(0, move - 1);
+    render(move);
+  });
+
+  document.querySelector('#endMove').addEventListener('click', function(){
+    move = gameAnalysis.position_analysis.length - 1;
+    render(move);
+  });
+  
 </script>
