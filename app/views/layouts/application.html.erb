@@ -24,7 +24,7 @@
           <% if @current_user %>
             <li class="nav-item">
               <div class="nav-link">
-                Signed in as <%= @current_user.name %>
+                Signed in as <%= link_to @current_user.name, user_path(@current_user) %>
               </div>
             </li>
             <li class="nav-item">

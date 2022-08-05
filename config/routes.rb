@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'users/create'
   resources :session, only: [:new, :create]
   delete 'session', to: 'session#destroy'
-  resources :users, only: [:new, :create, :update]
+  resources :users, only: [:new, :create, :update, :show]
 
   resources :games, only: [:index, :new, :create, :destroy, :show] do
     post :import, on: :collection

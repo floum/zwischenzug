@@ -1,0 +1,7 @@
+<%= form_for @user do |f| %>
+  <%= f.label :name %>
+  <div><%= @user.name %></div>
+  <%= f.label :language %>
+  <%= f.select :language, options_for_select(['en', 'fr'], selected: @user.language) %>
+  <%= f.submit %>
+<% end %>

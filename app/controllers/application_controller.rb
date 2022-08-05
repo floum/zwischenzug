@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
     return unless session[:user_id]
     begin
       @current_user ||= User.find(session[:user_id])
-      @translator = @current_user.translator
     rescue Mongoid::Errors::DocumentNotFound
       session[:user_id] = nil
       flash[:alert] = 'Invalid Session, You have been signed out.'
+      @current_user = NullUser.new
       redirect_to root_path
     end
   end

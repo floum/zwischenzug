@@ -1,9 +1,12 @@
 <%= link_to new_game_analysis_path, class: 'btn btn-primary' do %>
   <i class="bi bi-file-plus"></i>
 <% end %>
-<span class="badge bg-light text-dark">
-  <%= @game_analysis.map(&:length).reduce(:+) %> / <%= @game_analysis.map(&:game_length).reduce(:+) %> Moves Reviewed
-  (<%= (@game_analysis.map(&:length).reduce(:+).to_f / @game_analysis.map(&:game_length).reduce(:+) * 100).to_i %>%)</span>
+<% if @game_analysis.size > 0 %>
+  <span class="badge bg-light text-dark">
+    <%= @game_analysis.map(&:length).reduce(:+) %> / <%= @game_analysis.map(&:game_length).reduce(:+) %> Moves Reviewed
+    (<%= (@game_analysis.map(&:length).reduce(:+).to_f / @game_analysis.map(&:game_length).reduce(:+) * 100).to_i %>%)
+  </span>
+<% end %>
 <table>
   <thead>
     <td></td>
@@ -13,12 +16,12 @@
   </thead>
   <tbody>
     <% @game_analysis.sort_by{|analysis| [analysis.completion, analysis.game_length]}.each do |analysis| %>
-<tr>
-  <td><%= link_to analysis.game.header, edit_game_analysis_path(analysis) %></td>
-  <td><%= link_to 'show', game_analysis_path(analysis) %></td>
-  <td><%= analysis.length %> / <%= analysis.game.length %></td>
-  <td><%= button_to 'archive', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'are you sure?'}} %></td>
-</tr>
-<% end %>
-</tbody>
+      <tr>
+        <td><%= link_to analysis.game.header, edit_game_analysis_path(analysis) %></td>
+        <td><%= link_to 'show', game_analysis_path(analysis) %></td>
+        <td><%= analysis.length %> / <%= analysis.game.length %></td>
+        <td><%= button_to 'archive', game_analysis_path(analysis), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'are you sure?'}} %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
