@@ -28,7 +28,7 @@ class Game
   end
 
   def length
-    moves.size / 2
+    (moves.size + 1) / 2
   end
 
   def valid_pgn
