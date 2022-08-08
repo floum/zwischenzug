@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete 'session', to: 'session#destroy'
   resources :users, only: [:new, :create, :update, :show]
 
-  resources :games, only: [:index, :new, :create, :destroy, :show] do
+  resources :games do
     post :import, on: :collection
   end
 

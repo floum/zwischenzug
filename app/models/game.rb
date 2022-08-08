@@ -5,6 +5,7 @@ class Game
   field :white, type: String
   field :black, type: String
   field :result, type: String
+  field :lichess_id, type: String
   field :moves, type: Array
   field :review_color, type: String
   field :fens, type: Array
@@ -14,6 +15,7 @@ class Game
 
   validate :valid_pgn
 
+  before_validation :normalize_lichess_id
   before_create :parse_pgn
 
   STARTING_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
@@ -64,5 +66,11 @@ class Game
 
   def header
     "#{white} - #{black} | #{result}"
+  end
+
+  def normalize_lichess_id
+    if lichess_id && lichess_id.size > 8
+      self.lichess_id = lichess_id.split('/').last[0..7]
+    end
   end
 end

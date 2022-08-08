@@ -40,9 +40,15 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
+  def update
+    @game = Game.find(params[:id])
+    @game.update(game_params)
+    @ame.save
+  end
+
   private
 
   def game_params
-    params.require(:game).permit(:pgn, :review_color)
+    params.require(:game).permit(:pgn, :review_color, :lichess_id)
   end
 end

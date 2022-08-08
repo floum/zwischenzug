@@ -1,6 +1,17 @@
 <h2><%= @game.white %> - <%= @game.black %> | <%= @game.result %></h2>
 
 <%= render partial: 'navigation' %>
+<span class="game__lichess-id">
+  <% if @game.lichess_id %>
+    <%= link_to 'View on Lichess', "https://lichess.org/#{@game.lichess_id}", class: 'btn btn-primary' %>
+  <% else %>
+    <%= form_for @game do |f| %>
+      <%= f.label :lichess_id %>
+      <%= f.text_field :lichess_id %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+</span>
 
 <div class="row text-center">
   <div class="col-1">
