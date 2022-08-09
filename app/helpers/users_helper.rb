@@ -1,29 +1,13 @@
 module UsersHelper
   TRANSLATIONS = {
-    'en' => {
-      'K' => 'K',
-      'Q' => 'Q',
-      'R' => 'R',
-      'N' => 'N',
-      'B' => 'B'
-    },
-    'fr' => {
-      'K' => 'R',
-      'Q' => 'D',
-      'R' => 'T',
-      'N' => 'C',
-      'B' => 'F'
-    }
+    'en' => 'KQRNB',
+    'fr' => 'RDTCF'
   }
   def localize language, move
-    TRANSLATIONS[language].reduce(move) do |res, (key, value)|
-      res.gsub(key, value)
-    end
+    move.tr(TRANSLATIONS['en'], TRANSLATIONS[language])
   end
 
   def unlocalize language, move
-    TRANSLATIONS[language].reduce(move) do |res, (key, value)|
-      res.gsub(value, key)
-    end
+    move.tr(TRANSLATIONS[language], TRANSLATIONS['en'])
   end
 end

@@ -1,26 +1,32 @@
-<h2><%= @game.white %> - <%= @game.black %> | <%= @game.result %></h2>
+<div class="row">
+  <div class="col-9">
+    <h2><%= @game.white %> - <%= @game.black %> | <%= @game.result %></h2>
+  </div>
+  <div class="col-3"
+    <span class="game__lichess-id">
+      <% if @game.lichess_id %>
+      <%= link_to 'View on Lichess', "https://lichess.org/#{@game.lichess_id}", class: 'btn btn-primary' %>
+    <% else %>
+      <%= form_for @game do |f| %>
+        <%= f.label :lichess_id %>
+        <%= f.text_field :lichess_id %>
+        <%= f.submit 'Update', class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+    </span>
+  </div>
+</div>
 
 <%= render partial: 'navigation' %>
-<span class="game__lichess-id">
-  <% if @game.lichess_id %>
-    <%= link_to 'View on Lichess', "https://lichess.org/#{@game.lichess_id}", class: 'btn btn-primary' %>
-  <% else %>
-    <%= form_for @game do |f| %>
-      <%= f.label :lichess_id %>
-      <%= f.text_field :lichess_id %>
-      <%= f.submit %>
-    <% end %>
-  <% end %>
-</span>
 
-<div class="row text-center">
-  <div class="col-1">
+<div class="row">
+  <div class="col-3">
     <%= render partial: 'games/scoresheet', locals: {user: @current_user, moves: @game.moves} %>
   </div>
   <div class="col-6">
     <div id="chessboard"></div>
   </div>
-  <div class="col-6"></div>
+  <div class="col-3"></div>
 </div>
 
 <script type="module">

@@ -43,7 +43,6 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.update(game_params)
-    @ame.save
   end
 
   private
