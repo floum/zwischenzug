@@ -9,12 +9,14 @@
 <% end %>
 <table>
   <thead>
-    <td></td>
-    <td>reviewed</td>
-    <td>length</td>
-    <td>%</td>
-    <td>actions</td>
-    <td></td>
+    <tr>
+      <th>Players</th>
+      <th>Reviewed</th>
+      <th>Length</th>
+      <th>%</th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <% @game_analysis.sort_by{|analysis| [analysis.completion, analysis.game_length]}.each do |analysis| %>

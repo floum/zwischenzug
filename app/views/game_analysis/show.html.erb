@@ -1,4 +1,7 @@
 <%= @game_analysis.game.header %>
+<% if @game_analysis.complete? %>
+  <%= button_to 'Retry', game_analysis_index_path(game_analysis: {game_id: @game_analysis.game_id}, method: :post) %>
+<% end %>
 <%= render partial: 'games/navigation' %>
 <div class="row">
   <div class="col-1">
