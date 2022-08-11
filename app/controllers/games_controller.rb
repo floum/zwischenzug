@@ -4,14 +4,15 @@ class GamesController < ApplicationController
   end
 
   def import
-    @game = Game.new(pgn: Lichess.fetch(params[:lichess_id]), review_color: params[:review_color])
+    @game = Game.new(pgn: Lichess.fetch(params[:lichess_id]), review_color: params[:review_color], lichess_id: params[:lichess_id])
     if @game.save
       flash[:notice] = 'Game saved'
+      redirect_to game_path(@game)
     else
       flash[:alert] = "Game was not saved : #{@game.errors.full_messages}"
+      redirect_to games_path
     end
 
-    redirect_to games_path
   end
 
   def destroy
