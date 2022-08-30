@@ -8,6 +8,7 @@ gem 'mongoid'
 gem 'sassc-rails'
 gem 'bootstrap'
 gem 'chess'
+gem 'httparty'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'users/create'
   resources :session, only: [:new, :create]
   delete 'session', to: 'session#destroy'
+  get 'session/lichess', to: 'session#lichess_auth', as: :lichess_sign_in
+  get 'lichess_redirect', to: 'session#lichess_redirect', as: :lichess_redirect
   resources :users, only: [:new, :create, :update, :show]
 
   resources :games do
