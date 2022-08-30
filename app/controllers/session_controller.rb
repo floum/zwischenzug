@@ -1,6 +1,5 @@
 class SessionController < ApplicationController
   def new
-    @user = User.new
   end
 
   def lichess_auth
@@ -30,24 +29,30 @@ class SessionController < ApplicationController
         code_verifier: session[:code_verifier]
       }
     )
-    p response
+    access_token = response.parsed_response['access_token']
+    p access_token
 
-    redirect_to new_session_url
-  end
+    account = HTTParty.get(
+      'https://lichess.org/api/account',
+      headers: {
+        "Authorization" => "Bearer #{access_token}"
+      }
+    )
+    username = account.parsed_response["username"]
 
-  def create
     begin
-      @user = User.find_by(name: params[:user][:name])
+      @user = User.find_by(name: username)
     rescue Mongoid::Errors::DocumentNotFound
+      @user = User.create(name: username)
     end
-
-    if @user && @user.authenticate(params[:user][:password])
+    if @user
       session[:user_id] = @user.id
-      flash.notice = 'Welcome!'
+      flash.notice = "Welcome #{@user.name}!"
     else
       flash.alert = 'Unrecognized login'
     end
-    redirect_to root_path
+
+    redirect_to root_url
   end
 
   def destroy
