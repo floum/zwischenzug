@@ -30,7 +30,6 @@ class SessionController < ApplicationController
       }
     )
     access_token = response.parsed_response['access_token']
-    p access_token
 
     account = HTTParty.get(
       'https://lichess.org/api/account',
@@ -40,18 +39,10 @@ class SessionController < ApplicationController
     )
     username = account.parsed_response["username"]
 
-    begin
-      @user = User.find_by(name: username)
-    rescue Mongoid::Errors::DocumentNotFound
-      @user = User.create(name: username)
-    end
-    if @user
-      session[:user_id] = @user.id
-      flash.notice = "Welcome #{@user.name}!"
-    else
-      flash.alert = 'Unrecognized login'
-    end
+    @user = User.find_by(name: username) || User.create(name: username)
 
+    session[:user_id] = @user.id
+    flash.notice = "Welcome #{@user.name}!"
     redirect_to root_url
   end
 
